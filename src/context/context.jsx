@@ -1,36 +1,6 @@
-// import { createContext } from "react";
-// import run from "../config/gemini";
-
-// export const Context = createContext();
-
-// const ContextProvider = (props)=>{
-
-//     const onSent = async (prompt)=>{
-//         await run(prompt)
-//     }
-
-//     onSent("What is react.js")
-
-//     const ContextValue = {
-
-//     }
-
-//     return (
-//         <Context.Provider value={ContextValue}>
-//             {props.children}
-//         </Context.Provider>
-//     )
-// }
-
-
-// export default ContextProvider
-
-
-
 import React, { createContext, useState, useEffect } from "react";
 import run from "../config/gemini";
-// import React, { useState } from 'react'
-export const Context = createContext(); // Properly define the Context
+export const Context = createContext();
 
 const ContextProvider = (props) => {
 
@@ -45,12 +15,25 @@ const ContextProvider = (props) => {
             setResultData((prevData) => prevData + nextWord);
         },75*index)
     }
+    const newChat = ()=>{
+        setLoading(false)
+        setShowResult(false)
+    }
     const onSent = async (prompt) => {
         setResultData("");
         setLoading(true);
         setShowResult(true);
-        setRecentPrompt(input);
-        const response = await run(input);
+        let response;
+        if(prompt !== undefined){
+            response = await run(prompt);
+            setRecentPrompt(prompt);
+        }
+        else{
+            setPrevPrompts((prev)=>[...prev,input])
+            setRecentPrompt(input);
+            response = await run(input);
+        }
+
         let responseArray = response.split(("**"));
         let newResponse ="";
         for(let i = 0; i < responseArray.length;i++){
@@ -81,6 +64,7 @@ const ContextProvider = (props) => {
         resultData,
         input,
         setInput,
+        newChat
     };
 
     return (

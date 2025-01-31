@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';  // Add useContext import
+import React, { useContext } from 'react'; 
 import './main.css';
 import { assets } from '../../assets/assets';
-import { Context } from '../../context/context.jsx';  // Import your context
+import { Context } from '../../context/context.jsx';
 
 const Main = () => {
 
@@ -12,8 +12,8 @@ const Main = () => {
         loading, 
         resultData, 
         setInput, 
-        input  // Destructure input here from the context
-    } = useContext(Context);  // Use useContext here
+        input 
+    } = useContext(Context);
 
   return (
     <div className="main">
@@ -78,7 +78,7 @@ const Main = () => {
                     <div>
                         <img src={assets.gallery_icon} alt="gallery" />
                         <img src={assets.mic_icon} alt="mic" />
-                        <img onClick = {()=>onSent()} src={assets.send_icon} alt="send" />
+                        {input?<img onClick = {()=>onSent()} src={assets.send_icon} alt="send" />:null}
                     </div>
                 </div>
                 <p className="bottom-info">
