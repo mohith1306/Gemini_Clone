@@ -77,8 +77,8 @@
 .main-bottom{
     position: absolute;
     bottom: 0;
-    width: 100%;
-    max-width: 900%;
+    width: 80%;
+    /* max-width: 900%; */
     padding: 0px 20px;
     margin: auto;
 }
@@ -203,4 +203,4 @@
     .search-box div{
         gap: 5px;
     }
-}
+} 
