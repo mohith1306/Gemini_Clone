@@ -76,9 +76,9 @@
 .sidebar .bottom-item:hover {
   background-color: #e2e6eb;
 }
-
+/* 
 @media (max-width: 600px) {
   .sidebar {
     display: none;
   }
-}
+} */
